@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#08070d">
+  <title>NEXORA Study AI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand"><div class="brand-mark">N</div><div><strong>NEXORA</strong><small>STUDY AI</small></div></div>
+      <nav>
+        <button class="nav-link active" data-view="dashboard">⌂ <span>Dashboard</span></button>
+        <button class="nav-link" data-view="learn">▤ <span>My Learning</span></button>
+        <button class="nav-link" data-view="tutor">✦ <span>AI Tutor</span></button>
+        <button class="nav-link" data-view="quiz">◉ <span>Quiz & Practice</span></button>
+        <button class="nav-link" data-view="notes">▧ <span>My Notes</span></button>
+      </nav>
+      <div class="sidebar-bottom"><span class="status-dot"></span> Learning workspace <small>Version 2.0 • Preview</small></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+        <div class="breadcrumb">NEXORA <span>/</span> <b id="currentSection">Dashboard</b></div>
+        <div class="topbar-tag">✦ YOUR SMART STUDY PARTNER</div>
+      </header>
+
+      <section class="view active" id="dashboardView">
+        <div class="hero">
+          <div class="hero-copy">
+            <span class="eyebrow">WELCOME TO YOUR LEARNING SPACE</span>
+            <h1>Learn smarter.<br><em>Go further.</em></h1>
+            <p>Your personal workspace for lessons, practice and progress.</p>
+            <button class="primary-btn" data-go="learn">Explore my learning <span>→</span></button>
+          </div>
+          <div class="hero-orbit"><div class="orbit-ring"></div><div class="orbit-core">N<span>✦</span></div><i class="orbit-dot one"></i><i class="orbit-dot two"></i></div>
+        </div>
+
+        <div class="section-heading"><div><span class="eyebrow">YOUR WORKSPACE</span><h2>Study overview</h2></div><span class="subtle">Your progress is saved on this device</span></div>
+        <div class="stats-grid">
+          <article class="stat-card"><span class="stat-icon purple">▤</span><small>CHAPTERS COMPLETED</small><strong id="completedCount">0</strong><span class="stat-foot">Mark chapters as complete</span></article>
+          <article class="stat-card"><span class="stat-icon blue">◉</span><small>QUIZ ATTEMPTS</small><strong id="quizCount">0</strong><span class="stat-foot">Practice makes progress</span></article>
+          <article class="stat-card"><span class="stat-icon violet">◎</span><small>AVERAGE SCORE</small><strong id="averageScore">—</strong><span class="stat-foot">Based on saved quiz results</span></article>
+        </div>
+
+        <div class="two-column">
+          <article class="panel">
+            <div class="panel-heading"><div><span class="eyebrow">QUICK START</span><h3>Choose where to begin</h3></div><span class="panel-symbol">✦</span></div>
+            <div class="quick-actions">
+              <button data-go="learn"><b>▤</b><span><strong>Study a chapter</strong><small>Browse subjects and lessons</small></span><i>→</i></button>
+              <button data-go="tutor"><b>✦</b><span><strong>Ask the AI Tutor</strong><small>Get help with a doubt</small></span><i>→</i></button>
+              <button data-go="quiz"><b>◉</b><span><strong>Practice a quiz</strong><small>Test what you know</small></span><i>→</i></button>
+            </div>
+          </article>
+          <article class="panel highlight-panel">
+            <span class="eyebrow">A SMALL REMINDER</span>
+            <h3>Consistency beats<br><em>cramming.</em></h3>
+            <p>Choose one topic, understand it well, and practise a little every day.</p>
+            <div class="mini-line"><span></span></div><small>ONE STEP AT A TIME</small>
+          </article>
+        </div>
+        <p class="disclaimer">NEXORA is currently an early learning prototype. Some chapter lessons and AI features are still being developed.</p>
+      </section>
+
+      <section class="view" id="learnView">
+        <div class="page-intro"><span class="eyebrow">LEARNING LIBRARY</span><h1>Find your <em>next lesson.</em></h1><p>Select your board, class and subject to explore the learning library.</p></div>
+        <div class="panel selector-panel">
+          <div class="selector-grid">
+            <label>EDUCATION BOARD<select id="boardSelect"><option value="">Select board</option><option>MP Board</option><option>CBSE</option><option>ICSE</option><option>UP Board</option><option>Maharashtra Board</option><option>Rajasthan Board</option><option>Chhattisgarh Board</option><option>Bihar Board</option></select></label>
+            <label>CLASS<select id="classSelect"><option value="">Select class</option><option value="6">Class 6</option><option value="7">Class 7</option><option value="8">Class 8</option><option value="9">Class 9</option><option value="10">Class 10</option><option value="11">Class 11</option><option value="12">Class 12</option></select></label>
+          </div>
+          <div class="selection-note" id="selectionNote">Choose a board and class to load available subjects.</div>
+        </div>
+        <div id="subjectArea" class="hidden">
+          <div class="section-heading"><div><span class="eyebrow">YOUR SUBJECTS</span><h2>Select a subject</h2></div></div>
+          <div id="subjectGrid" class="subject-grid"></div>
+          <div id="chapterArea" class="panel hidden">
+            <div class="panel-heading"><div><span class="eyebrow" id="chapterEyebrow">CHAPTER LIBRARY</span><h3 id="chapterHeading">Choose a chapter</h3></div></div>
+            <div id="chapterList" class="chapter-list"></div>
+          </div>
+          <div id="lessonArea" class="panel hidden">
+            <div class="lesson-top"><div><span class="eyebrow">CHAPTER WORKSPACE</span><h2 id="lessonTitle"></h2></div><button class="outline-btn" id="completeChapter">Mark complete ✓</button></div>
+            <div class="lesson-content" id="lessonContent"></div>
+            <div class="lesson-footer"><span class="subtle" id="lessonStatus">Lesson content</span><button class="primary-btn small" data-go="quiz">Go to practice →</button></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="tutorView">
+        <div class="page-intro"><span class="eyebrow">YOUR STUDY COMPANION</span><h1>Ask. Understand. <em>Learn.</em></h1><p>Write a doubt and choose the language you prefer.</p></div>
+        <div class="panel tutor-panel">
+          <div class="tutor-heading"><div class="tutor-avatar">✦</div><div><strong>NEXORA AI Tutor</strong><small><span class="status-dot"></span> Demo mode • AI connection not configured</small></div></div>
+          <div class="chat-window" id="chatWindow"><div class="chat-message assistant"><b>NEXORA Tutor</b><p>Hi! I can help you practise and understand topics. Ask me a question to try the demo.</p></div></div>
+          <div class="chat-controls"><select id="languageSelect" aria-label="Response language"><option>English</option><option>Hindi</option></select><div class="chat-input-row"><input id="tutorInput" placeholder="Type your study question..." autocomplete="off"><button class="primary-btn" id="sendTutor">Send ↑</button></div><button class="text-btn" id="clearChat">Clear conversation</button></div>
+          <p class="disclaimer">Demo mode gives a sample response only. Real AI answers require a secure backend and an authorised API connection.</p>
+        </div>
+      </section>
+
+      <section class="view" id="quizView">
+        <div class="page-intro"><span class="eyebrow">PRACTICE ZONE</span><h1>Train your <em>thinking.</em></h1><p>Try a sample question or create a practice session around a topic.</p></div>
+        <div class="two-column">
+          <div class="panel">
+            <span class="eyebrow">QUICK MCQ</span><h3>Science • Chemical Reactions</h3>
+            <p>Which gas is released when zinc reacts with dilute hydrochloric acid?</p>
+            <div class="option-list" id="quickOptions">
+              <button data-answer="wrong">Oxygen</button><button data-answer="correct">Hydrogen</button><button data-answer="wrong">Nitrogen</button>
+            </div>
+            <p id="quickFeedback" class="feedback" aria-live="polite">Choose one answer to check your understanding.</p>
+          </div>
+          <div class="panel">
+            <span class="eyebrow">TOPIC PRACTICE</span><h3>Choose a topic</h3>
+            <p>Enter a topic to create a practice placeholder. A full question bank is coming later.</p>
+            <input id="quizTopic" class="full-input" placeholder="e.g. Linear equations">
+            <button class="primary-btn" id="makeQuiz">Create practice session →</button>
+            <p id="quizTopicFeedback" class="feedback" aria-live="polite"></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="notesView">
+        <div class="page-intro"><span class="eyebrow">YOUR PERSONAL SPACE</span><h1>Keep your <em>ideas close.</em></h1><p>Write and save your own study notes on this device.</p></div>
+        <div class="panel notes-panel"><label for="notesTitle">NOTE TITLE</label><input id="notesTitle" class="full-input" placeholder="e.g. Important formulas"><label for="notesBody">YOUR NOTES</label><textarea id="notesBody" rows="8" placeholder="Write your notes here..."></textarea><div class="notes-actions"><button class="primary-btn" id="saveNote">Save note</button><span id="noteFeedback" class="subtle"></span></div><div id="savedNotes" class="saved-notes"></div></div>
+      </section>
+
+      <footer>© 2026 NEXORA STUDY AI <span>LEARN SMARTER • GROW STRONGER • ACHIEVE BIGGER</span></footer>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
